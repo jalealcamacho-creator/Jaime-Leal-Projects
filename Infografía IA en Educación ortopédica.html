@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía IA en Educación Quirúrgica</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 2rem;
+            background-color: #fff;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+            background-color: #d1e2ff;
+            border-radius: 50%;
+            opacity: 0.3;
+            filter: blur(50px);
+        }
+        .container::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 250px;
+            height: 250px;
+            background-color: #c4b5fd;
+            border-radius: 50%;
+            opacity: 0.3;
+            filter: blur(50px);
+        }
+        h1 {
+            color: #1e40af;
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+        .subtitle {
+            text-align: center;
+            font-size: 1.25rem;
+            color: #4b5563;
+            margin-bottom: 2rem;
+        }
+        h2 {
+            color: #334155;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .section {
+            background-color: #f8fafc;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid #e2e8f0;
+            position: relative;
+            z-index: 10;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background-color: #fff;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+        .item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .icon {
+            flex-shrink: 0;
+            width: 3rem;
+            height: 3rem;
+            margin-right: 1rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            animation: pulse-icon 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+        }
+        @keyframes pulse-icon {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+        .icon-ml { background-color: #d1e2ff; color: #1e40af; }
+        .icon-dl { background-color: #e3d2ff; color: #5b21b6; }
+        .icon-cv { background-color: #cffafe; color: #0d9488; }
+        .icon-nlp { background-color: #ffe4e6; color: #be185d; }
+        .icon-genai { background-color: #c4b5fd; color: #4338ca; }
+        .footer-text {
+            text-align: center;
+            font-size: 1.25rem;
+            font-style: italic;
+            font-weight: 500;
+            margin-top: 2rem;
+            color: #4b5563;
+        }
+        .image-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        .image-card {
+            background-color: #fff;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            max-width: 200px;
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .image-card svg {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 0.5rem;
+        }
+        .principles-container {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        .principle-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .principle-item svg {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 0.5rem;
+            color: #4b5563;
+        }
+        .footer-section {
+            text-align: center;
+            margin-top: 3rem;
+        }
+        .article-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1e40af;
+            margin-bottom: 0.5rem;
+        }
+        .citation {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-bottom: 1rem;
+        }
+        #definition-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            max-width: 500px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        .modal-content h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1e40af;
+            margin-bottom: 1rem;
+        }
+        .close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-4 sm:p-8">
+
+<div class="container">
+    <h1 class="text-3xl sm:text-4xl lg:text-5xl">Inteligencia Artificial en la Educación de Cirugía Ortopédica y Trauma: Aplicaciones, Ética y Futuras Perspectivas</h1>
+    <p class="subtitle">Leal JA. (2025). JAAOS Glob Res Rev 2025;9: e25.00174.</p>
+
+    <div id="definition-modal" class="hidden">
+        <div class="modal-content">
+            <button class="close-button" id="close-modal">&times;</button>
+            <h3 id="modal-title"></h3>
+            <p id="modal-text"></p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Subtipos de Inteligencia Artificial aplicados en la educación quirúrgica</h2>
+        <div class="grid-container">
+            <div class="item" data-type="ml">
+                <div class="icon icon-ml">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21l-8-8H4v-2h8l8 8v2h-8zM12 3l8 8h-4v2h-8l-8-8v-2h8z"/></svg>
+                </div>
+                <div>
+                    <div class="sub-section-title">Machine Learning</div>
+                    <div class="sub-section-desc">Predicción del progreso y personalización.</div>
+                </div>
+            </div>
+            <div class="item" data-type="dl">
+                <div class="icon icon-dl">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm0 18a8 8 0 118-8A8 8 0 0112 20zm0-12a4 4 0 104 4A4 4 0 0012 8z"/></svg>
+                </div>
+                <div>
+                    <div class="sub-section-title">Deep Learning</div>
+                    <div class="sub-section-desc">Interpretación de radiografías y videos quirúrgicos.</div>
+                </div>
+            </div>
+            <div class="item" data-type="cv">
+                <div class="icon icon-cv">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2zM5 20V5h14l.001 15zM12 8a4 4 0 11-4 4A4 4 0 0112 8z"/></svg>
+                </div>
+                <div>
+                    <div class="sub-section-title">Computer Vision</div>
+                    <div class="sub-section-desc">Análisis de movimiento, guía en procedimientos.</div>
+                </div>
+            </div>
+            <div class="item" data-type="nlp">
+                <div class="icon icon-nlp">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20 2H4a2 2 0 00-2 2v12a2 2 0 002 2h14l4 4V4a2 2 0 00-2-2zm-2 12H6v-2h12zm0-4H6V6h12z"/></svg>
+                </div>
+                <div>
+                    <div class="sub-section-title">Procesamiento de Lenguaje Natural</div>
+                    <div class="sub-section-desc">Generación de preguntas, análisis de textos clínicos.</div>
+                </div>
+            </div>
+            <div class="item" data-type="genai">
+                <div class="icon icon-genai">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h2v-2h-2zm0-4h2V7h-2z"/></svg>
+                </div>
+                <div>
+                    <div class="sub-section-title">Generative AI / LLMs</div>
+                    <div class="sub-section-desc">Simulación de casos y aprendizaje interactivo.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Uso de IA en la formación de residentes</h2>
+        <div class="image-container">
+            <div class="image-card">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-check"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg>
+                <p class="text-xs mt-1">Evaluación automática de habilidades.</p>
+            </div>
+            <div class="image-card">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-image"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+                <p class="text-xs mt-1">Bibliotecas interactivas de imágenes para diagnóstico.</p>
+            </div>
+            <div class="image-card">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-vr"><path d="m2 12 3 2 3-2 3 2 3-2 3 2 3-2"/><path d="M5 14v6"/><path d="M8 12v8"/><path d="M11 14v6"/><path d="M14 12v8"/><path d="M17 14v6"/><path d="M20 12v8"/><path d="M8 2h8"/><path d="M8 10h8"/><path d="M8 18h8"/></svg>
+                <p class="text-xs mt-1">Simulación con realidad aumentada y tutores virtuales.</p>
+            </div>
+            <div class="image-card">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-crosshair"><circle cx="12" cy="12" r="10"/><path d="M22 12h-4"/><path d="M6 12H2"/><path d="M12 6V2"/><path d="M12 22v-4"/></svg>
+                <p class="text-xs mt-1">Apoyo en la toma de decisiones en escenarios clínicos.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Propuesta de Integración Curricular</h2>
+        <div class="text-center my-4">
+            <img src="https://i.ibb.co/Hp4RfsBW/Captura-de-pantalla-2025-09-26-a-las-23-29-14.png" alt="Diagrama de espiral de integración curricular" class="mx-auto rounded-lg shadow-md max-w-full h-auto">
+        </div>
+        <p class="text-center mt-8 text-sm text-gray-600">
+            Enfoque progresivo por niveles de residencia (PGY 1-5), basado en la Taxonomía de Bloom.
+        </p>
+    </div>
+
+    <div class="principles-container">
+        <div class="principle-item">
+            <!-- Icono de Transparencia -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye">
+                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                <circle cx="12" cy="12" r="3"/>
+            </svg>
+            <p class="text-xs font-semibold">Transparencia</p>
+            <p class="text-xs text-gray-500">Explicabilidad de las decisiones de la IA y acceso a los datos de entrenamiento.</p>
+        </div>
+        <div class="principle-item">
+            <!-- Icono de Equidad -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+            <p class="text-xs font-semibold">Equidad</p>
+            <p class="text-xs text-gray-500">Acceso justo a la tecnología para todos, evitando sesgos demográficos.</p>
+        </div>
+        <div class="principle-item">
+            <!-- Icono de Ética -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-brain">
+                <path d="M15.5 12a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/>
+                <path d="M8.5 10a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/>
+                <path d="M17.5 17a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/>
+                <path d="M12.5 15a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/>
+                <path d="M8.5 20a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/>
+                <path d="M2 13.5a6.5 6.5 0 1 1 13-3"/>
+                <path d="M14.5 18.5a6.5 6.5 0 1 0-13 3"/>
+                <path d="M15.5 17.5a6.5 6.5 0 1 1 3-13"/>
+                <path d="M12.5 2.5a6.5 6.5 0 1 1 3 13"/>
+                <path d="M20 16a6.5 6.5 0 1 1-6-10.5"/>
+            </svg>
+            <p class="text-xs">Ética</p>
+            <p class="text-xs text-gray-500">Consideración de la seguridad, privacidad y sesgo.</p>
+        </div>
+    </div>
+    
+    <div class="footer-section">
+        <p class="footer-text">La IA no reemplaza la mentoría quirúrgica: la amplifica</p>
+    </div>
+
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const modal = document.getElementById('definition-modal');
+        const closeModalBtn = document.getElementById('close-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalText = document.getElementById('modal-text');
+        const items = document.querySelectorAll('.item');
+
+        const definitions = {
+            ml: {
+                title: 'Machine Learning (ML)',
+                text: 'Disciplina de la IA que se enfoca en el desarrollo de algoritmos que aprenden de los datos y toman decisiones o predicciones sin ser programados explícitamente.'
+            },
+            dl: {
+                title: 'Deep Learning (DL)',
+                text: 'Un subcampo del ML que utiliza redes neuronales artificiales con múltiples capas para modelar abstracciones de alto nivel en los datos. Es ideal para tareas complejas como el reconocimiento de imágenes.'
+            },
+            cv: {
+                title: 'Computer Vision (CV)',
+                text: 'Campo de la IA que permite a las computadoras "ver" y procesar imágenes y videos. Se utiliza para analizar gestos quirúrgicos y guiar procedimientos en tiempo real.'
+            },
+            nlp: {
+                title: 'Procesamiento de Lenguaje Natural (PLN)',
+                text: 'Disciplina que se centra en la interacción entre computadoras y el lenguaje humano. Ayuda a las máquinas a entender, interpretar y manipular el lenguaje humano.'
+            },
+            genai: {
+                title: 'IA Generativa / LLMs',
+                text: 'Tipo de IA que puede generar nuevos contenidos, como texto, imágenes y simulaciones, a partir de los datos con los que fue entrenada. Los LLMs (Large Language Models) son una de sus aplicaciones más conocidas.'
+            }
+        };
+
+        items.forEach(item => {
+            item.addEventListener('click', (event) => {
+                const type = item.getAttribute('data-type');
+                if (definitions[type]) {
+                    modalTitle.textContent = definitions[type].title;
+                    modalText.textContent = definitions[type].text;
+                    modal.style.display = 'flex';
+                }
+            });
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        // Close modal on outside click
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
